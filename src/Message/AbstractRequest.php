@@ -157,6 +157,66 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
     {
         return $this->setParameter('orderid', $value);
     }
+    
+        public function getCavv()
+    {
+        return $this->getParameter('cavv');
+    }
+
+    public function setCavv($value)
+    {
+        return $this->setParameter('cavv', $value);
+    }
+
+    public function getCardholderAuth()
+    {
+        return $this->getParameter('cardholder_auth');
+    }
+
+    public function setCardholderAuth($value)
+    {
+        return $this->setParameter('cardholder_auth', $value);
+    }
+
+    public function getXid()
+    {
+        return $this->getParameter('xid');
+    }
+
+    public function setXid($value)
+    {
+        return $this->setParameter('xid', $value);
+    }
+
+    public function getThreeDsVersion()
+    {
+        return $this->getParameter('three_ds_version');
+    }
+
+    public function setThreeDsVersion($value)
+    {
+        return $this->setParameter('three_ds_version', $value);
+    }
+
+    public function getDirectoryServerId()
+    {
+        return $this->getParameter('directory_server_id');
+    }
+
+    public function setDirectoryServerId($value)
+    {
+        return $this->setParameter('directory_server_id', $value);
+    }
+
+    public function getEci()
+    {
+        return $this->getParameter('eci');
+    }
+
+    public function setEci($value)
+    {
+        return $this->setParameter('eci', $value);
+    }
 
     public function getOrderDescription()
     {
@@ -274,6 +334,16 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
         $data['shipping'] = $this->getShipping();
         $data['ponumber'] = $this->getPONumber();
         $data['ipaddress'] = $this->getClientIp();
+        
+        if ($this->getCavv()) {
+            $data['cavv'] = $this->getCavv();
+            $data['cardholder_auth'] = $this->getCardholderAuth();
+            $data['xid'] = $this->getXid();
+            $data['three_ds_version'] = $this->getThreeDsVersion();
+            $data['directory_server_id'] = $this->getDirectoryServerId();
+            $data['eci'] = $this->getEci();
+        }
+        
         if ($this->getCurrency()) {
             $data['currency'] = $this->getCurrency();
         }
