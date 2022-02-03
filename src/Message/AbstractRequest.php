@@ -38,6 +38,36 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
         return $this->setParameter('processor_id', $value);
     }
 
+    public function getPlanId()
+    {
+        return $this->getParameter('plan_id');
+    }
+
+    public function setPlanId($value)
+    {
+        return $this->setParameter('plan_id', $value);
+    }
+
+    public function getRecurring()
+    {
+        return $this->getParameter('recurring');
+    }
+
+    public function setRecurring($value)
+    {
+        return $this->setParameter('recurring', $value);
+    }
+
+    public function getStartDate()
+    {
+        return $this->getParameter('start_date');
+    }
+
+    public function setStartDate($value)
+    {
+        return $this->setParameter('start_date', $value);
+    }
+
     public function getAuthorizationCode()
     {
         return $this->getParameter('authorization_code');
@@ -157,8 +187,8 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
     {
         return $this->setParameter('orderid', $value);
     }
-    
-        public function getCavv()
+
+    public function getCavv()
     {
         return $this->getParameter('cavv');
     }
@@ -266,6 +296,10 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
             $data['type'] = $this->type;
         }
 
+        if (isset($this->recurring)) {
+            $data['recurring'] = $this->recurring;
+        }
+
         if (isset($this->customer_vault)) {
             $data['customer_vault'] = $this->customer_vault;
         }
@@ -275,6 +309,18 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
 
         if ($this->getProcessorId()) {
             $data['processor_id'] = $this->getProcessorId();
+        }
+
+        if ($this->getPlanId()) {
+            $data['plan_id'] = $this->getPlanId();
+        }
+
+        if ($this->getRecurring()) {
+            $data['recurring'] = $this->getRecurring();
+        }
+
+        if ($this->getStartDate()) {
+            $data['start_date'] = $this->getStartDate();
         }
 
         if ($this->getAuthorizationCode()) {
@@ -334,7 +380,7 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
         $data['shipping'] = $this->getShipping();
         $data['ponumber'] = $this->getPONumber();
         $data['ipaddress'] = $this->getClientIp();
-        
+
         if ($this->getCavv()) {
             $data['cavv'] = $this->getCavv();
             $data['cardholder_auth'] = $this->getCardholderAuth();
@@ -343,7 +389,7 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
             $data['directory_server_id'] = $this->getDirectoryServerId();
             $data['eci'] = $this->getEci();
         }
-        
+
         if ($this->getCurrency()) {
             $data['currency'] = $this->getCurrency();
         }

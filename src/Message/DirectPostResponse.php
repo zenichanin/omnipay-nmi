@@ -61,6 +61,11 @@ class DirectPostResponse extends AbstractResponse
         return trim($this->data['transactionid']);
     }
 
+    public function getSubscriptionId()
+    {
+        return trim($this->data['subscription_id']);
+    }
+
     public function getCardReference()
     {
         if (isset($this->data['customer_vault_id'])) {

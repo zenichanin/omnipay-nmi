@@ -291,6 +291,11 @@ class DirectPostGateway extends AbstractGateway
         return $this->auth($parameters);
     }
 
+    public function addSubscription(array $parameters = array())
+    {
+        return $this->subscription($parameters);
+    }
+
     /**
      * Transaction sales are submitted and immediately flagged for settlement.
      * @param  array  $parameters
@@ -312,6 +317,16 @@ class DirectPostGateway extends AbstractGateway
     public function auth(array $parameters = array())
     {
         return $this->createRequest('\Omnipay\NMI\Message\DirectPostAuthRequest', $parameters);
+    }
+
+    /**
+     * Recurring subsciptions
+     * @param  array  $parameters
+     * @return \Omnipay\NMI\Message\DirectPostAuthRequest
+     */
+    public function subscription(array $parameters = array())
+    {
+        return $this->createRequest('\Omnipay\NMI\Message\DirectPostAddSubscriptionRequest', $parameters);
     }
 
     /**

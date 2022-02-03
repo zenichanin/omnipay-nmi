@@ -14,7 +14,7 @@
         "network",
         "inc"
     ],
-    "homepage": "https://github.com/mfauveau/omnipay-nmi",
+    "homepage": "https://github.com/zenichanin/omnipay-nmi",
     "license": "MIT",
     "authors": [
         {
