@@ -291,15 +291,6 @@ class DirectPostGateway extends AbstractGateway
         return $this->auth($parameters);
     }
 
-    public function addSubscription(array $parameters = array())
-    {
-        return $this->createSubscription($parameters);
-    }
-
-    public function deleteSubscription(array $parameters = array())
-    {
-        return $this->removeSubscription($parameters);
-    }
 
     /**
      * Transaction sales are submitted and immediately flagged for settlement.
@@ -329,9 +320,9 @@ class DirectPostGateway extends AbstractGateway
      * @param  array  $parameters
      * @return \Omnipay\NMI\Message\DirectPostAuthRequest
      */
-    public function createSubscription(array $parameters = array())
+    public function addSubscription(array $parameters = array())
     {
-        return $this->createRequest('\Omnipay\NMI\Message\DirectPostDeleteSubscriptionRequest', $parameters);
+        return $this->createRequest('\Omnipay\NMI\Message\DirectPostAddSubscriptionRequest', $parameters);
     }
 
     /**
@@ -339,9 +330,9 @@ class DirectPostGateway extends AbstractGateway
      * @param  array  $parameters
      * @return \Omnipay\NMI\Message\DirectPostAuthRequest
      */
-    public function removeSubscription(array $parameters = array())
+    public function deleteSubscription(array $parameters = array())
     {
-        return $this->createRequest('\Omnipay\NMI\Message\DirectPostAddSubscriptionRequest', $parameters);
+        return $this->createRequest('\Omnipay\NMI\Message\DirectPostDeleteSubscriptionRequest', $parameters);
     }
 
     /**
