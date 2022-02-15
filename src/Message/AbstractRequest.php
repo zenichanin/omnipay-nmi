@@ -58,6 +58,16 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
         return $this->setParameter('recurring', $value);
     }
 
+    public function getSubscriptionId()
+    {
+        return $this->getParameter('subscription_id');
+    }
+
+    public function setSubscriptionId($value)
+    {
+        return $this->setParameter('subscription_id', $value);
+    }
+
     public function getStartDate()
     {
         return $this->getParameter('start_date');
