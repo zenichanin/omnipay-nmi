@@ -26,8 +26,28 @@ class DirectPostGateway extends AbstractGateway
     {
         return array(
             'username' => '',
-            'password' => ''
+            'password' => '',
+            'security_key' => ''
         );
+    }
+
+    /**
+     * API key ("security key" in the NMI portal), used in place of username/password.
+     *
+     * @return string
+     */
+    public function getSecurityKey()
+    {
+        return $this->getParameter('security_key');
+    }
+
+    /**
+     * @param  string $value
+     * @return $this
+     */
+    public function setSecurityKey($value)
+    {
+        return $this->setParameter('security_key', $value);
     }
 
     /**
