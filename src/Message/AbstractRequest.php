@@ -485,8 +485,24 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
         return $this->setParameter('endpoint', $value);
     }
 
+    /**
+     * The gateway URL this request posts to.
+     *
+     * Reads the parameter first so setEndpoint() actually takes effect: it has always
+     * written to the parameter bag while this method returned the hardcoded property,
+     * making the setter silently inert and pinning every request to the production
+     * domain. Sandbox accounts are served from a different host and are rejected there.
+     *
+     * Falls back to the default when unset or blank, so existing callers are unaffected.
+     *
+     * @return string
+     */
     public function getEndpoint()
     {
-        return $this->endpoint;
+        $endpoint = $this->getParameter('endpoint');
+
+        return is_string($endpoint) && trim($endpoint) !== ''
+            ? trim($endpoint)
+            : $this->endpoint;
     }
 }

@@ -27,7 +27,8 @@ class DirectPostGateway extends AbstractGateway
         return array(
             'username' => '',
             'password' => '',
-            'security_key' => ''
+            'security_key' => '',
+            'endpoint' => ''
         );
     }
 
@@ -285,11 +286,17 @@ class DirectPostGateway extends AbstractGateway
     }
 
     /**
+     * Override the gateway URL, e.g. to point a sandbox account at its own domain.
+     *
+     * Previously returned $this->endpoint, which the gateway does not declare, so the
+     * value setEndpoint() stored was unreachable and sandbox accounts could not be
+     * routed off the production host. Blank means "use the request's default".
+     *
      * @return string
      */
     public function getEndpoint()
     {
-        return $this->endpoint;
+        return $this->getParameter('endpoint');
     }
 
     /**
