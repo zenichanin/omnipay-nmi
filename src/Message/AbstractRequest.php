@@ -335,6 +335,13 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
             $data['password'] = $this->getPassword();
         }
 
+        // testMode is an existing Omnipay\Common concept (see AbstractRequest::setTestMode());
+        // NMI's own flag for it is test_mode=enabled on the transaction itself — approved or
+        // declined normally, but never actually sent to the processor for settlement.
+        if ($this->getTestMode()) {
+            $data['test_mode'] = 'enabled';
+        }
+
         if ($this->getProcessorId()) {
             $data['processor_id'] = $this->getProcessorId();
         }
